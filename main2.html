@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveNow</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<!-- Leaflet CSS -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+/>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">DriveNow</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="vehicle.html">Vehicles</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="contactpage.html">Contact</a>
+    </nav>
+    <button class="login-btn">Login</button>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Drive Freely. Rent Instantly.</h1>
+      <p>No paperwork. No stress. Just tap and drive.</p>
+      <a href="vehicle.html" class="cta-btn">Find Your Car</a>
+    </div>
+  </section>
+
+  <img src="assets/Sunsetimage.png">
+
+  <section class="find-location container">
+    <h2>Find Vehicles Near You</h2>
+
+    <!-- Dropdown filter -->
+  <select id="vehicleFilter" aria-label="Filter vehicles by type" style="padding: 8px 12px; font-size: 1rem; border-radius: 6px; margin-bottom: 15px;">
+    <option value="all">All Vehicles</option>
+    <option value="small">Small</option>
+    <option value="suv">SUV</option>
+    <option value="electric">Electric</option>
+  </select>
+
+  <!-- Map container -->
+  <div id="map" style="height: 400px; width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+</section>
+
+
+
+
+
+
+
+
+
+  </section>
+
+  <!-- Why Us Section -->
+  <section class="why-us">
+    <h2>Why DriveNow?</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>📱 Easy Booking</h3>
+        <p>Book your ride in seconds, from anywhere.</p>
+      </div>
+      <div class="feature">
+        <h3>🚗 Wide Fleet</h3>
+        <p>Choose from small cars, SUVs, or electric vehicles.</p>
+      </div>
+      <div class="feature">
+        <h3>💳 No Hidden Fees</h3>
+        <p>Transparent pricing. No surprises.</p>
+      </div>
+    </div>
+    <a href="vehicle.html" class="cta-btn">See All Vehicles</a>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What Drivers Say</h2>
+    <blockquote>“Super convenient and easy to use. Felt like owning a car without the hassle.” – Anna K.</blockquote>
+    <blockquote>“Great selection of cars and honest pricing.” – Jamal R.</blockquote>
+  </section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>© 2025 DriveNow. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
+
+  <script>
+    // Initialize the map, center Berlin (latitude, longitude)
+    const map = L.map('map').setView([52.52, 13.405], 13);
+  
+    // Add OSM tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    }).addTo(map);
+  
+    // Dummy vehicle data with Berlin-ish coords & types
+    const vehicles = [
+      { id: 1, type: 'small', coords: [52.515, 13.4], name: 'Small Car 1' },
+      { id: 2, type: 'suv', coords: [52.52, 13.39], name: 'SUV 1' },
+      { id: 3, type: 'electric', coords: [52.53, 13.42], name: 'Electric Car 1' },
+      { id: 4, type: 'small', coords: [52.51, 13.41], name: 'Small Car 2' },
+      { id: 5, type: 'suv', coords: [52.518, 13.4], name: 'SUV 2' },
+    ];
+  
+    let markers = [];
+  
+    // Function to add markers for given vehicles
+    function addMarkers(vehicleList) {
+      // Clear old markers
+      markers.forEach(marker => map.removeLayer(marker));
+      markers = [];
+  
+      vehicleList.forEach(vehicle => {
+        const marker = L.marker(vehicle.coords).addTo(map);
+        marker.bindPopup(`<b>${vehicle.name}</b><br>Type: ${vehicle.type}<br><button onclick="selectVehicle(${vehicle.id})">Select</button>`);
+        markers.push(marker);
+      });
+    }
+  
+    // Initial load: all vehicles
+    addMarkers(vehicles);
+  
+    // Filter dropdown event
+    const filterSelect = document.getElementById('vehicleFilter');
+    filterSelect.addEventListener('change', () => {
+      const selected = filterSelect.value;
+  
+      if (selected === 'all') {
+        addMarkers(vehicles);
+      } else {
+        addMarkers(vehicles.filter(v => v.type === selected));
+      }
+    });
+  
+    // Select vehicle action
+    function selectVehicle(id) {
+      alert(`You selected vehicle #${id}`);
+    }
+  </script>
+  
+  
+
+
+
+</body>
+</html>

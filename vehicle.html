@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>DriveNow - Vehicle Rental Vroom Vroom!</title>
+    
+</head>
+<body>
+
+     <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">DriveNow</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Vehicles</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+        <button class="login-btn">Login</button>
+    </header>
+
+    <!-- Hero Section -->
+  <section class="hero">
+    <h1>Rent the Car You Want, When You Want</h1>
+    <p>Simple. Fast. Affordable.</p>
+    <button class="cta">Book Now</button>
+  </section>
+  
+
+<!-- Search Form -->
+<section class="search-box">
+    <input type="text" id="searchInput" placeholder="Pickup Location">
+  <select id="vehicleFilter">
+    <option value="all">All</option>
+    <option value="small">Small</option>
+    <option value="suv">SUV</option>
+    <option value="compact">Compact</option>
+    <option value="electric">Electric</option>
+    <option value="transporter">Transporter</option>
+  </select>
+  <button id="searchButton">Search</button>
+  </section>
+
+  <!-- Featured Cars -->
+
+  <section class="vehicles">
+    <h2>Featured Vehicles</h2>
+    <div class="car-list">
+
+        <!-- Compact mistake for the AudiQ2 -->
+  
+      <div class="car-card  suv">
+        <div class="car-tags">
+          <span class="tag">Compact</span>
+          <span class="tag">SUV</span>
+        </div>
+        <img src="assets/AudiQ2.png" alt="Audi Q2">
+        <h3>Audi Q2</h3>
+        <p class="subtext">S-Line</p>
+        <ul class="car-details">
+          <li>👤 5 seats</li>
+          <li>⚙️ Automatic</li>
+          <li>⛽ Diesel</li>
+        </ul>
+        <div class="price">from <strong>€0.89/km</strong> or <strong>€45/day</strong></div>
+      </div>
+
+      <div class="car-card small">
+        <div class="car-tags">
+          <span class="tag">Small</span>
+        </div>
+        <img src="assets/Opelcorsa.png" alt="Opel Corsa">
+        <h3>Opel Corsa</h3>
+        <p class="subtext">Elegance</p>
+        <ul class="car-details">
+          <li>👤 5 seats</li>
+          <li>⚙️ Automatic</li>
+          <li>⛽ Petrol</li>
+        </ul>
+        <div class="price">from <strong>€0.79/km</strong> or <strong>€24.99/day</strong></div>
+      </div>
+    
+    <div class="car-card compact">
+  <div class="car-tags">
+    <span class="tag">Compact</span>
+  </div>
+  <img src="assets/Vwgolf.png" alt="Vw Golf">
+  <h3>Vw Golf</h3>
+  <p class="subtext">Golf 5</p> 
+  <ul class="car-details">
+    <li>👤 5 seats</li>
+    <li>⚙️ Manual</li>
+    <li>⛽ Petrol</li>
+  </ul>
+
+  <div class="price">from <strong>€0.89/km</strong> or <strong>€55/day</strong></div>
+</div>
+
+    
+    
+    <div class="car-card suv">
+  <div class="car-tags">
+    <span class="tag">Compact</span>
+    <span class="tag">SUV</span>
+  </div>
+  <img src="assets/VWT-Roc.png" alt="VW T-Roc">
+  <h3>VWT-Roc</h3>
+  <p class="subtext">Sport</p> 
+  <ul class="car-details">
+    <li>👤 5 seats</li>
+    <li>⚙️ Atomatic</li>
+    <li>⛽ Petrol</li>
+  </ul>
+
+  <div class="price">from <strong>€0.89/km</strong> or <strong>€50/day</strong></div>
+</div>
+
+
+    
+    <div class="car-card suv">
+  <div class="car-tags">
+    <span class="tag">Compact</span>
+    <span class="tag">SUV</span>
+  </div>
+  <img src="assets/VWTaigo.png" alt="VW Taigo">
+  <h3>VWTaigo</h3>
+  <p class="subtext">Coupe</p> 
+
+  <ul class="car-details">
+    <li>👤 5 seats</li>
+    <li>⚙️ Atomatic</li>
+    <li>⛽ Petrol</li>
+  </ul>
+
+  <div class="price">from <strong>€0.89/km</strong> or <strong>€45/day</strong></div>
+</div>
+
+
+    
+    
+    <div class="car-card small">
+  <div class="car-tags">
+    <span class="tag">Small</span>
+  </div>
+  <img src="assets/m1.png" alt="Minicooper">
+  <h3>Minicooper</h3>
+  <p class="subtext">Cabriolet</p> 
+
+  <ul class="car-details">
+    <li>👤 5 seats</li>
+    <li>⚙️ Atomatic</li>
+    <li>⛽ Petrol</li>
+  </ul>
+
+  <div class="price">from <strong>€0.59/km</strong> or <strong>€24/day</strong></div>
+</div>
+    
+    <div class="car-card small">
+  <div class="car-tags">
+    <span class="tag">Small</span>
+  </div>
+  <img src="assets/PeugeotE-208.png" alt="PeugeotE-208">
+  <h3>PeugeotE-208</h3>
+  <p class="subtext">E-208</p> 
+
+  <ul class="car-details">
+    <li>👤 5 seats</li>
+    <li>⚙️ Manual</li>
+    <li>⛽ Diesel</li>
+  </ul>
+
+  <div class="price">from <strong>€0.49/km</strong> or <strong>€19/day</strong></div>
+</div>
+
+<div class="car-card electric">
+    <div class="car-tags">
+      <span class="tag">Electric</span>
+    </div>
+    <img src="assets/TeslaModelS.png" alt="Tesla">
+    <h3>Tesla</h3>
+    <p class="subtext">Model S</p>
+    <ul class="car-details">
+      <li>👤 5 seats</li>
+      <li>⚙️ Electric</li>
+      <li>⛽ Eco-Friendly</li>
+    </ul>
+    <div class="price">from <strong>€1.19/km</strong> or <strong>€70/day</strong></div>
+  </div>
+
+  <div class="car-card electric">
+    <div class="car-tags">
+      <span class="tag">Electric</span>
+    </div>
+    <img src="assets/TeslaModelY.png" alt="Tesla">
+    <h3>Tesla</h3>
+    <p class="subtext">Model Y</p>
+    <ul class="car-details">
+      <li>👤 5 seats</li>
+      <li>⚙️ Electric</li>
+      <li>⛽ Eco-Friendly</li>
+    </ul>
+    <div class="price">from <strong>€1.29/km</strong> or <strong>€75/day</strong></div>
+  </div>
+
+  <div class="car-card transporter">
+    <div class="car-tags">
+      <span class="tag">Transporter</span>
+    </div>
+    <img src="assets/PrezzoOpelVivaro.png" alt="Prezzo Opel Vivaro">
+    <h3>VW</h3>
+    <p class="subtext">Vivaro</p>
+    <ul class="car-details">
+      <li>👤 3 seats</li>
+      <li>⚙️ Manual</li>
+      <li>⛽ Diesel</li>
+    </ul>
+    <div class="price">from <strong>€1.15/km</strong> or <strong>€60/day</strong></div>
+  </div>
+
+  <div class="car-card transporter">
+    <div class="car-tags">
+      <span class="tag">Transporter</span>
+    </div>
+    <img src="assets/VWcaravelle.png" alt="VW Caravelle">
+    <h3>VW</h3>
+    <p class="subtext">Caravelle</p>
+    <ul class="car-details">
+      <li>👤 3 seats</li>
+      <li>⚙️ Atomatic</li>
+      <li>⛽ Petrol</li>
+    </ul>
+    <div class="price">from <strong>€1.39/km</strong> or <strong>€70/day</strong></div>
+  </div>
+
+  <div class="car-card transporter">
+    <div class="car-tags">
+      <span class="tag">Transporter</span>
+    </div>
+    <img src="assets/Sprinter.png" alt="Mercedes Sprinter">
+    <h3>Mercedes Sprinter</h3>
+    <p class="subtext">Benz</p>
+    <ul class="car-details">
+      <li>👤 3 seats</li>
+      <li>⚙️ Atomatic</li>
+      <li>⛽ Diesel</li>
+    </ul>
+    <div class="price">from <strong>€1.40/km</strong> or <strong>€75/day</strong></div>
+  </div>
+
+<!-- Add more cars here as needed -->
+</div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 DriveNow. All rights reserved.</p>
+      </footer>
+
+      <script src="main.js"></script>
+      <!-- Add your filter script here -->
+<script>
+  const carCards = document.querySelectorAll('.car-card');
+  const filterSelect = document.getElementById('vehicleFilter');
+  const searchInput = document.getElementById('searchInput');
+  const searchButton = document.getElementById('searchButton');
+
+  // search by Text
+  searchButton.addEventListener('click', () => {
+    const query = searchInput.value.toLowerCase();
+    const selectedFilter = filterSelect.value.toLowerCase();
+
+    carCards.forEach(card => {
+      const cardText = card.textContent.toLowerCase();
+      const matchesSearch = cardText.includes(query);
+      const matchesFilter = selectedFilter === 'all' || card.classList.contains(selectedFilter);
+
+      // Show only if both search and filter match
+      if (matchesSearch && matchesFilter) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+    </body>
+    </html>
+     </body>
+      </html>
+
+    <h1>Welcome to the Vehicle Rental Dashboard!</h1>
+</body>
+</html>
