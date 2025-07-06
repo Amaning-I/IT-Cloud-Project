@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>DriveNow - Customize Your Audi Q2 Rental</title>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">DriveNow</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html">Vehicles</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+        <button class="login-btn">Login</button>
+    </header>
+
+    <div class="booking-page-wrapper">
+        <div class="booking-page-container">
+            <div class="booking-main-content">
+                <h1>Customize Your Audi Q2 Rental</h1>
+                <p id="selectedLocationDisplay">
+                    Pickup Location: Not Selected
+                </p>
+
+                <div class="booking-section-box" id="durationSection">
+                    <div class="booking-section-header">
+                        <h2><span class="icon">📅</span> Minimum Duration</h2>
+                        <span id="durationCompletion" class="location-display"></span>
+                        <span id="durationCheck" class="checkmark-icon" style="display: none;">✔️</span>
+                    </div>
+                    <div class="booking-options-grid">
+                        <div class="option-card" data-duration-months="1" data-monthly-price="899" data-onetime-fee="199">
+                            <h4>1 Month</h4>
+                            <p>After your contract term, your subscription automatically converts to a monthly cancellable plan.</p>
+                            <span class="price-tag">€899 / Month</span>
+                            <p class="subtext">+ One-time Start Fee €199</p>
+                        </div>
+                        <div class="option-card" data-duration-months="6" data-monthly-price="689" data-onetime-fee="99">
+                            <h4>6 Months</h4>
+                            <p>After your contract term, your subscription automatically converts to a monthly cancellable plan.</p>
+                            <span class="price-tag">€689 / Month</span>
+                            <p class="subtext">+ One-time Start Fee €99</p>
+                        </div>
+                        <div class="option-card selected" data-duration-months="12" data-monthly-price="549" data-onetime-fee="0">
+                            <h4>12 Months</h4>
+                            <p>After your contract term, your subscription automatically converts to a monthly cancellable plan.</p>
+                            <span class="price-tag">€549 / Month</span>
+                            <p class="subtext">+ One-time Start Fee €0</p>
+                        </div>
+                    </div>
+                    <div class="navigate-buttons">
+                        <button class="next-btn" data-target-section="kilometerSection" data-current-section="durationSection">Next Step</button>
+                    </div>
+                </div>
+
+                <div class="booking-section-box" id="kilometerSection" style="display: none;">
+                    <div class="booking-section-header">
+                        <h2><span class="icon">🛣️</span> Kilometer Package</h2>
+                        <span id="kilometerCompletion" class="location-display"></span>
+                        <span id="kilometerCheck" class="checkmark-icon" style="display: none;">✔️</span>
+                    </div>
+                    <div class="kilometer-input-group">
+                        <label for="kilometerRange">Select your desired kilometers per month:</label>
+                        <input type="range" id="kilometerRange" min="200" max="2000" step="50" value="500">
+                        <div class="kilometer-value"><span id="currentKilometers">500</span> KM / Month</div>
+                    </div>
+                    <p style="font-size: 0.9em; color: #bbb; margin-top: 15px;">
+                        Additional kilometers will be charged at €0.25/km. Unused kilometers do not roll over.
+                    </p>
+                    <div class="navigate-buttons">
+                        <button class="next-btn" data-target-section="protectionSection" data-current-section="kilometerSection">Next Step</button>
+                    </div>
+                </div>
+
+                <div class="booking-section-box" id="protectionSection" style="display: none;">
+                    <div class="booking-section-header">
+                        <h2><span class="icon">🛡️</span> Protection</h2>
+                        <span id="protectionCompletion" class="location-display"></span>
+                        <span id="protectionCheck" class="checkmark-icon" style="display: none;">✔️</span>
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="radio" name="protection" value="standard" checked data-price="0"> Standard Protection (€0 / Month)
+                        </label>
+                        <p class="extra-description">
+                            Basic liability insurance. Damage to your vehicle will incur a deductible.
+                        </p>
+
+                        <label>
+                            <input type="radio" name="protection" value="premium" data-price="29.99"> Premium Protection (€29.99 / Month)
+                        </label>
+                        <p class="extra-description">
+                            Reduced deductible, covers minor damages, glass and tire protection.
+                        </p>
+
+                        <label>
+                            <input type="radio" name="protection" value="full" data-price="59.99"> Full Protection (€59.99 / Month)
+                        </label>
+                        <p class="extra-description">
+                            Zero deductible, comprehensive coverage for peace of mind.
+                        </p>
+                    </div>
+                    <div class="navigate-buttons">
+                        <button class="next-btn" data-target-section="extrasSection" data-current-section="protectionSection">Next Step</button>
+                    </div>
+                </div>
+
+                <div class="booking-section-box" id="extrasSection" style="display: none;">
+                    <div class="booking-section-header">
+                        <h2><span class="icon">➕</span> Choose Your Extras</h2>
+                        <span id="extrasCompletion" class="location-display"></span>
+                        <span id="extrasCheck" class="checkmark-icon" style="display: none;">✔️</span>
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="extra" value="childSeat" data-price-monthly="15" data-price-onetime="0"> Child Seat (€15 / Month)
+                        </label>
+                        <p class="extra-description">Suitable for children aged 1-4 years.</p>
+
+                        <label>
+                            <input type="checkbox" name="extra" value="gps" data-price-monthly="10" data-price-onetime="0"> GPS Navigation (€10 / Month)
+                        </label>
+                        <p class="extra-description">Pre-installed GPS system for easy navigation.</p>
+
+                        <label>
+                            <input type="checkbox" name="extra" value="winterTires" data-price-monthly="0" data-price-onetime="50"> Winter Tires (One-time €50)
+                        </label>
+                        <p class="extra-description">Essential for safe driving during winter months (October-March).</p>
+
+                        <label>
+                            <input type="checkbox" name="extra" value="additionalDriver" data-price-monthly="20" data-price-onetime="0"> Additional Driver (€20 / Month)
+                        </label>
+                        <p class="extra-description">Allows another person to drive the vehicle.</p>
+                    </div>
+                    <div class="navigate-buttons">
+                        <button class="next-btn" id="finalBookNowBtn">Book Now</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="booking-summary-sidebar">
+                <h3>Subscription Overview</h3>
+                <div class="summary-car-details">
+                    <img src="assets/AudiQ2.png" alt="Audi Q2 S-Line">
+                    <div class="summary-car-info">
+                        <p id="summaryCarName">Audi Q2</p>
+                        <p id="summaryCarType">SUV</p>
+                    </div>
+                </div>
+
+                <div class="summary-items-list">
+                    <div class="summary-item">
+                        <span>Pickup Location</span>
+                        <strong id="summaryLocation">Berlin Friedrichshain</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Pickup Date</span>
+                        <strong id="summaryPickupDate">08. July 2025</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Minimum Duration</span>
+                        <strong id="summaryDuration">12 Months</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Kilometer Package</span>
+                        <strong id="summaryKilometers">500 Kilometers per Month</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Protection</span>
+                        <strong id="summaryProtection">Standard Protection</strong>
+                    </div>
+                    <div class="summary-item" id="summaryExtrasContainer">
+                        <span>Extras</span><strong>None</strong>
+                    </div>
+                </div>
+
+                <div class="summary-price-details">
+                    <div class="total-onetime">
+                        <span>One-time Costs</span>
+                        <span id="summaryOneTimeCost">€0.00</span>
+                    </div>
+                    <div class="total-monthly">
+                        <span>Monthly Costs</span>
+                        <span id="summaryMonthlyCost">€549.00</span>
+                    </div>
+                    <p class="tax-info">Show Details including Tax</p>
+                </div>
+            </div>
+        </div>
+    </div> <footer class="footer">
+        <p>© 2025 DriveNow. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- Car Specific Data (UPDATE FOR EACH CAR PAGE) ---
+        const carDetails = {
+            name: "Audi Q2 S-Line",
+            type: "Compact SUV",
+            image: "assets/AudiQ2.png",
+            defaultMonthlyPrice: 549,
+            defaultOnetimeFee: 0,
+            kilometerPrices: {
+                "200": 0, "250": 0, "300": 0, "350": 0, "400": 0, "450": 0, "500": 0,
+                "550": 5, "600": 10, "650": 15, "700": 20, "750": 25, "800": 30, "850": 35, "900": 40, "950": 45, "1000": 50,
+                "1050": 55, "1100": 60, "1150": 65, "1200": 70, "1250": 75, "1300": 80, "1350": 85, "1400": 90, "1450": 95, "1500": 100,
+                "1550": 105, "1600": 110, "1650": 115, "1700": 120, "1750": 125, "1800": 130, "1850": 135, "1900": 140, "1950": 145, "2000": 150
+            }
+        };
+
+        // --- DOM Elements ---
+        const selectedLocationDisplay = document.getElementById('selectedLocationDisplay');
+        const durationOptions = document.querySelectorAll('#durationSection .option-card');
+        const kilometerRange = document.getElementById('kilometerRange');
+        const currentKilometers = document.getElementById('currentKilometers');
+        const protectionOptions = document.querySelectorAll('input[name="protection"]');
+        const extraCheckboxes = document.querySelectorAll('input[name="extra"]');
+
+        // Summary sidebar elements
+        const summaryLocation = document.getElementById('summaryLocation');
+        const summaryPickupDate = document.getElementById('summaryPickupDate');
+        const summaryDuration = document.getElementById('summaryDuration');
+        const summaryKilometers = document.getElementById('summaryKilometers');
+        const summaryProtection = document.getElementById('summaryProtection');
+        const summaryExtrasContainer = document.getElementById('summaryExtrasContainer');
+        const summaryOneTimeCost = document.getElementById('summaryOneTimeCost');
+        const summaryMonthlyCost = document.getElementById('summaryMonthlyCost');
+        const summaryCarNameDisplay = document.getElementById('summaryCarName');
+        const summaryCarTypeDisplay = document.getElementById('summaryCarType');
+        const summaryCarImage = document.querySelector('.summary-car-details img');
+
+        // Section Completion Elements (for checkmarks and text display)
+        const completionElements = {
+            duration: { text: document.getElementById('durationCompletion'), check: document.getElementById('durationCheck') },
+            kilometer: { text: document.getElementById('kilometerCompletion'), check: document.getElementById('kilometerCheck') },
+            protection: { text: document.getElementById('protectionCompletion'), check: document.getElementById('protectionCheck') },
+            extras: { text: document.getElementById('extrasCompletion'), check: document.getElementById('extrasCheck') }
+        };
+
+
+        // --- Section Navigation ---
+        const sections = {
+            durationSection: document.getElementById('durationSection'),
+            kilometerSection: document.getElementById('kilometerSection'),
+            protectionSection: document.getElementById('protectionSection'),
+            extrasSection: document.getElementById('extrasSection')
+        };
+        const nextButtons = document.querySelectorAll('.navigate-buttons .next-btn');
+
+        // --- State Variables ---
+        let currentDuration = {
+            months: 12, // Default
+            monthlyPrice: carDetails.defaultMonthlyPrice,
+            onetimeFee: carDetails.defaultOnetimeFee
+        };
+        let currentKilometerPackage = {
+            km: 500, // Default
+            monthlyPriceIncrease: 0
+        };
+        let currentProtection = {
+            name: "Standard Protection", // Default
+            monthlyPrice: 0
+        };
+        let selectedExtras = []; // Stores { name, monthlyPrice, onetimePrice }
+
+        // --- Functions ---
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function updateSummary() {
+            // Update car details in summary
+            summaryCarNameDisplay.textContent = carDetails.name;
+            summaryCarTypeDisplay.textContent = carDetails.type;
+            summaryCarImage.src = carDetails.image;
+            summaryCarImage.alt = carDetails.name;
+
+            // Location & Date
+            const locationParam = getQueryParam('location');
+            let formattedLocation = 'Not Selected';
+            if (locationParam) {
+                formattedLocation = locationParam.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                selectedLocationDisplay.textContent = `Pickup Location: ${formattedLocation}`;
+                summaryLocation.textContent = formattedLocation;
+            } else {
+                selectedLocationDisplay.textContent = `Pickup Location: Not Selected (Please go back to Vehicles page)`;
+                selectedLocationDisplay.style.color = '#dc3545';
+                summaryLocation.textContent = 'Not Selected';
+            }
+            completionElements.duration.text.textContent = formattedLocation; // Show location in duration header
+
+
+            // Set current date for pickup (dynamic, based on today + 7 days for example)
+            const today = new Date();
+            const pickupDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+            summaryPickupDate.textContent = pickupDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+
+
+            // Duration
+            summaryDuration.textContent = `${currentDuration.months} Months`;
+            completionElements.duration.check.style.display = 'inline-block'; // Show checkmark when duration is selected
+
+            // Kilometers
+            summaryKilometers.textContent = `${currentKilometerPackage.km} Kilometers per Month`;
+            completionElements.kilometer.text.textContent = `${currentKilometerPackage.km} KM/Month`; // Show KMs in header
+            completionElements.kilometer.check.style.display = 'inline-block';
+
+            // Protection
+            summaryProtection.textContent = currentProtection.name;
+            completionElements.protection.text.textContent = currentProtection.name; // Show protection in header
+            completionElements.protection.check.style.display = 'inline-block';
+
+            // Extras
+            // We need to re-render the extras list inside the summary-extras-container (the <span> and <strong> tags)
+            summaryExtrasContainer.innerHTML = ''; // Clear previous extras
+            let totalExtrasMonthly = 0;
+            let totalExtrasOnetime = 0;
+
+            if (selectedExtras.length > 0) {
+                selectedExtras.forEach(extra => {
+                    const extraItem = document.createElement('div');
+                    extraItem.classList.add('summary-item');
+                    let priceText = '';
+                    if (extra.monthlyPrice > 0) {
+                        priceText += `€${extra.monthlyPrice.toFixed(2)} / Month`;
+                    }
+                    if (extra.onetimePrice > 0) {
+                        if (priceText !== '') priceText += ' + ';
+                        priceText += `€${extra.onetimePrice.toFixed(2)} One-time`;
+                    }
+                    extraItem.innerHTML = `<span>${extra.name}</span><strong>${priceText}</strong>`;
+                    summaryExtrasContainer.appendChild(extraItem);
+                    totalExtrasMonthly += extra.monthlyPrice;
+                    totalExtrasOnetime += extra.onetimePrice;
+                });
+                completionElements.extras.text.textContent = `${selectedExtras.length} Selected`; // Show number of extras
+            } else {
+                 const noExtrasItem = document.createElement('div');
+                 noExtrasItem.classList.add('summary-item');
+                 noExtrasItem.innerHTML = `<span>Extras</span><strong>None</strong>`;
+                 summaryExtrasContainer.appendChild(noExtrasItem);
+                 completionElements.extras.text.textContent = 'None';
+            }
+            completionElements.extras.check.style.display = 'inline-block'; // Always show check for extras after interaction
+
+
+            // Calculate total costs
+            let totalMonthly = currentDuration.monthlyPrice + currentKilometerPackage.monthlyPriceIncrease + currentProtection.monthlyPrice + totalExtrasMonthly;
+            let totalOneTime = currentDuration.onetimeFee + totalExtrasOnetime;
+
+            summaryMonthlyCost.textContent = `€${totalMonthly.toFixed(2)}`;
+            summaryOneTimeCost.textContent = `€${totalOneTime.toFixed(2)}`;
+        }
+
+        // --- Event Listeners ---
+
+        // Duration Section
+        durationOptions.forEach(card => {
+            card.addEventListener('click', () => {
+                durationOptions.forEach(option => option.classList.remove('selected'));
+                card.classList.add('selected');
+
+                currentDuration = {
+                    months: parseInt(card.dataset.durationMonths),
+                    monthlyPrice: parseFloat(card.dataset.monthlyPrice),
+                    onetimeFee: parseFloat(card.dataset.onetimeFee)
+                };
+                updateSummary();
+            });
+        });
+
+        // Kilometer Section
+        kilometerRange.addEventListener('input', () => {
+            const km = parseInt(kilometerRange.value);
+            currentKilometers.textContent = km;
+            currentKilometerPackage.km = km;
+            currentKilometerPackage.monthlyPriceIncrease = carDetails.kilometerPrices[km.toString()] || 0;
+            updateSummary();
+        });
+
+        // Protection Section
+        protectionOptions.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    currentProtection = {
+                        name: radio.parentNode.textContent.split('(')[0].trim(),
+                        monthlyPrice: parseFloat(radio.dataset.price)
+                    };
+                    updateSummary();
+                }
+            });
+        });
+
+        // Extras Section
+        extraCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const extraName = checkbox.parentNode.textContent.split('(')[0].trim();
+                const monthlyPrice = parseFloat(checkbox.dataset.priceMonthly || 0);
+                const onetimePrice = parseFloat(checkbox.dataset.priceOnetime || 0);
+
+                if (checkbox.checked) {
+                    selectedExtras.push({ name: extraName, monthlyPrice, onetimePrice });
+                } else {
+                    selectedExtras = selectedExtras.filter(extra => extra.name !== extraName);
+                }
+                updateSummary();
+            });
+        });
+
+        // Section Navigation
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const currentSectionId = button.dataset.currentSection;
+                const targetSectionId = button.dataset.targetSection;
+
+                // Hide current section box
+                if (sections[currentSectionId]) {
+                    sections[currentSectionId].style.display = 'none';
+                }
+
+                // Show target section box
+                if (sections[targetSectionId]) {
+                    sections[targetSectionId].style.display = 'block';
+                }
+
+                // If it's the final button, trigger booking confirmation
+                if (button.id === 'finalBookNowBtn') {
+                    const finalMonthly = parseFloat(summaryMonthlyCost.textContent.replace('€', ''));
+                    const finalOnetime = parseFloat(summaryOneTimeCost.textContent.replace('€', ''));
+                    const finalLocation = summaryLocation.textContent;
+                    alert(`Confirming your booking for ${carDetails.name} in ${finalLocation}:\n` +
+                          `Monthly Cost: €${finalMonthly.toFixed(2)}\n` +
+                          `One-time Cost: €${finalOnetime.toFixed(2)}\n` +
+                          `Thank you for booking with DriveNow! (This is a demo, no actual booking occurs.)`);
+                }
+
+                const bookingPageWrapper = document.querySelector('.booking-page-wrapper');
+                if (bookingPageWrapper) {
+                    window.scrollTo({ top: bookingPageWrapper.offsetTop, behavior: 'smooth' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // --- Initial Setup on Page Load ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial selected option for duration
+            const defaultDurationCard = document.querySelector('#durationSection .option-card.selected');
+            if (defaultDurationCard) {
+                currentDuration = {
+                    months: parseInt(defaultDurationCard.dataset.durationMonths),
+                    monthlyPrice: parseFloat(defaultDurationCard.dataset.monthlyPrice),
+                    onetimeFee: parseFloat(defaultDurationCard.dataset.onetimeFee)
+                };
+            } else if (durationOptions.length > 0) {
+                durationOptions[0].classList.add('selected');
+                currentDuration = {
+                    months: parseInt(durationOptions[0].dataset.durationMonths),
+                    monthlyPrice: parseFloat(durationOptions[0].dataset.monthlyPrice),
+                    onetimeFee: parseFloat(durationOptions[0].dataset.onetimeFee)
+                };
+            }
+
+            // Ensure default kilometer is set and reflected
+            const initialKm = parseInt(kilometerRange.value);
+            currentKilometerPackage.km = initialKm;
+            currentKilometerPackage.monthlyPriceIncrease = carDetails.kilometerPrices[initialKm.toString()] || 0;
+            currentKilometers.textContent = initialKm;
+
+            // Ensure default protection is set
+            const defaultProtectionRadio = document.querySelector('input[name="protection"]:checked');
+            if (defaultProtectionRadio) {
+                 currentProtection = {
+                    name: defaultProtectionRadio.parentNode.textContent.split('(')[0].trim(),
+                    monthlyPrice: parseFloat(defaultProtectionRadio.dataset.price)
+                 };
+            }
+
+            // Update summary initially with all default values
+            updateSummary();
+        });
+
+    </script>
+</body>
+</html>
