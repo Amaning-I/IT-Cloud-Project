@@ -5,18 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DriveNow</title>
   <link rel="stylesheet" href="main.css" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 </head>
-<!-- Leaflet CSS -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-/>
-
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-
 <body>
-
   <!-- Navbar -->
   <header class="navbar">
     <div class="logo">DriveNow</div>
@@ -24,7 +17,7 @@
       <a href="#">Home</a>
       <a href="vehicle.html">Vehicles</a>
       <a href="#">About</a>
-      <a href="#">Contact</a>
+      <a href="#">Billing</a>
       <a href="contactpage.html">Contact</a>
     </nav>
     <button class="login-btn">Login</button>
@@ -39,31 +32,22 @@
     </div>
   </section>
 
-  <img src="assets/Sunsetimage.png">
+  <img src="assets/Sunsetimage.png" alt="Sunset driving" />
 
+  <!-- Find location / map -->
   <section class="find-location container">
     <h2>Find Vehicles Near You</h2>
 
     <!-- Dropdown filter -->
-  <select id="vehicleFilter" aria-label="Filter vehicles by type" style="padding: 8px 12px; font-size: 1rem; border-radius: 6px; margin-bottom: 15px;">
-    <option value="all">All Vehicles</option>
-    <option value="small">Small</option>
-    <option value="suv">SUV</option>
-    <option value="electric">Electric</option>
-  </select>
+    <select id="vehicleFilter" aria-label="Filter vehicles by type" style="padding: 8px 12px; font-size: 1rem; border-radius: 6px; margin-bottom: 15px;">
+      <option value="all">All Vehicles</option>
+      <option value="small">Small</option>
+      <option value="suv">SUV</option>
+      <option value="electric">Electric</option>
+    </select>
 
-  <!-- Map container -->
-  <div id="map" style="height: 400px; width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
-</section>
-
-
-
-
-
-
-
-
-
+    <!-- Map container -->
+    <div id="map" style="height: 400px; width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
   </section>
 
   <!-- Why Us Section -->
@@ -93,71 +77,120 @@
     <blockquote>“Great selection of cars and honest pricing.” – Jamal R.</blockquote>
   </section>
 
-<!-- Footer -->
-<footer class="footer">
+  <!-- Footer -->
+  <footer class="footer">
     <p>© 2025 DriveNow. All rights reserved.</p>
   </footer>
 
-  <script src="main.js"></script>
+  <!-- ==========================
+       Slide-in Booking Panel
+       ========================== -->
+  <div id="bookingModal">
+    <div class="booking-panel" role="dialog" aria-modal="true">
+      <button class="close-btn" aria-label="Close booking panel">&times;</button>
 
+      <div class="car-header">
+        <img id="modalCarImage" src="assets/placeholder-car.png" alt="Selected vehicle image" />
+        <h3 id="modalCarName">Vehicle Name</h3>
+      </div>
+
+      <form class="booking-form" id="bookingForm">
+        <div>
+          <label for="pickupLocation">Pickup location</label>
+          <select id="pickupLocation" required>
+            <option value="" disabled selected>Select a city</option>
+            <option value="berlin">Berlin</option>
+            <option value="munich">Munich</option>
+            <option value="hamburg">Hamburg</option>
+            <option value="frankfurt">Frankfurt</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="pickupDate">Pickup date</label>
+          <input type="date" id="pickupDate" required />
+        </div>
+
+        <button type="submit" class="continue-btn">Continue to booking</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="main.js"></script>
   <script>
-    // Initialize the map, center Berlin (latitude, longitude)
+    /* ---------- Leaflet map + markers ---------- */
     const map = L.map('map').setView([52.52, 13.405], 13);
-  
-    // Add OSM tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-    }).addTo(map);
-  
-    // Dummy vehicle data with Berlin-ish coords & types
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+
     const vehicles = [
-      { id: 1, type: 'small', coords: [52.515, 13.4], name: 'Small Car 1' },
-      { id: 2, type: 'suv', coords: [52.52, 13.39], name: 'SUV 1' },
-      { id: 3, type: 'electric', coords: [52.53, 13.42], name: 'Electric Car 1' },
-      { id: 4, type: 'small', coords: [52.51, 13.41], name: 'Small Car 2' },
-      { id: 5, type: 'suv', coords: [52.518, 13.4], name: 'SUV 2' },
+      { id: 1, type: 'small',    coords: [52.515, 13.4],  name: 'Small Car 1' },
+      { id: 2, type: 'suv',      coords: [52.52,  13.39], name: 'SUV 1'       },
+      { id: 3, type: 'electric', coords: [52.53,  13.42], name: 'Electric 1'  },
+      { id: 4, type: 'small',    coords: [52.51,  13.41], name: 'Small Car 2' },
+      { id: 5, type: 'suv',      coords: [52.518, 13.4],  name: 'SUV 2'       },
     ];
-  
+
     let markers = [];
-  
-    // Function to add markers for given vehicles
-    function addMarkers(vehicleList) {
-      // Clear old markers
-      markers.forEach(marker => map.removeLayer(marker));
+
+    function addMarkers(list) {
+      markers.forEach(m => map.removeLayer(m));
       markers = [];
-  
-      vehicleList.forEach(vehicle => {
-        const marker = L.marker(vehicle.coords).addTo(map);
-        marker.bindPopup(`<b>${vehicle.name}</b><br>Type: ${vehicle.type}<br><button onclick="selectVehicle(${vehicle.id})">Select</button>`);
-        markers.push(marker);
+
+      list.forEach(v => {
+        const m = L.marker(v.coords).addTo(map);
+        m.bindPopup(`<b>${v.name}</b><br>Type: ${v.type}<br><button onclick=\"openBookingModal('${v.name}')\">Select</button>`);
+        markers.push(m);
       });
     }
-  
-    // Initial load: all vehicles
+
     addMarkers(vehicles);
-  
-    // Filter dropdown event
-    const filterSelect = document.getElementById('vehicleFilter');
-    filterSelect.addEventListener('change', () => {
-      const selected = filterSelect.value;
-  
-      if (selected === 'all') {
-        addMarkers(vehicles);
-      } else {
-        addMarkers(vehicles.filter(v => v.type === selected));
-      }
+
+    document.getElementById('vehicleFilter').addEventListener('change', e => {
+      const val = e.target.value;
+      addMarkers(val === 'all' ? vehicles : vehicles.filter(v => v.type === val));
     });
-  
-    // Select vehicle action
-    function selectVehicle(id) {
-      alert(`You selected vehicle #${id}`);
+
+    /* ---------- Booking panel logic ---------- */
+    const bookingModal      = document.getElementById('bookingModal');
+    const bookingPanel      = bookingModal.querySelector('.booking-panel');
+    const closeBtn          = bookingPanel.querySelector('.close-btn');
+    const modalCarNameEl    = document.getElementById('modalCarName');
+    const modalCarImageEl   = document.getElementById('modalCarImage');
+    const pickupLocationSel = document.getElementById('pickupLocation');
+    const pickupDateInput   = document.getElementById('pickupDate');
+
+    const todayPlus3 = () => {
+      const d = new Date();
+      d.setDate(d.getDate() + 3);
+      return d.toISOString().split('T')[0];
+    };
+
+    function openBookingModal(carName) {
+      modalCarNameEl.textContent = carName;
+      modalCarImageEl.alt = carName;
+      pickupLocationSel.selectedIndex = 0;
+      pickupDateInput.value = todayPlus3();
+      bookingModal.style.display = 'block';
+      requestAnimationFrame(() => bookingPanel.style.transform = 'translateX(0)');
     }
+
+    function closeBookingModal() { bookingModal.style.display = 'none'; }
+
+    closeBtn.addEventListener('click', closeBookingModal);
+    bookingModal.addEventListener('click', e => { if (e.target === bookingModal) closeBookingModal(); });
+
+    document.getElementById('bookingForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const location = pickupLocationSel.value;
+      const date = pickupDateInput.value;
+      if (!location) { alert('Please choose a pickup location.'); return; }
+      alert(`Proceeding with booking for ${modalCarNameEl.textContent} on ${date} at ${location}.`);
+      // Replace alert with redirect or API call as needed.
+      closeBookingModal();
+    });
   </script>
-  
-  
-
-
-
 </body>
 </html>
-
